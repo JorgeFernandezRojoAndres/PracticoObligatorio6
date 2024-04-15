@@ -4,6 +4,7 @@ import java.awt.event.*;
 
 public class DeTodoSAMenuGeneral extends JFrame {
     private JDesktopPane desktopPane;
+    
 
     public DeTodoSAMenuGeneral() {
         setTitle("Menú General");
@@ -23,7 +24,7 @@ public class DeTodoSAMenuGeneral extends JFrame {
         productoMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Crear una instancia de GestionDeProductos y agregarla al JDesktopPane
-                GestionDeProductos gestionDeProductos = new GestionDeProductos();
+                 GestionDeProductos gestionDeProductos = new GestionDeProductos(DeTodoSAMenuGeneral.this);
                 desktopPane.add(gestionDeProductos);
                 gestionDeProductos.setVisible(true);
             }
@@ -33,18 +34,7 @@ public class DeTodoSAMenuGeneral extends JFrame {
         
         JMenu consultaMenu = new JMenu("Consulta");
 
-        // Opción de administración
-        JMenuItem opcionAdministrar = new JMenuItem("Administrar");
-        opcionAdministrar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Aquí puedes abrir un JInternalFrame para la administración
-                JInternalFrame internalFrame = new JInternalFrame("Administración", true, true, true, true);
-                internalFrame.setSize(300, 200);
-                internalFrame.setVisible(true);
-                desktopPane.add(internalFrame);
-            }
-        });
-        administracionMenu.add(opcionAdministrar);
+        
 
         // Opción de consulta
         JMenuItem opcionConsultar = new JMenuItem("Consultar");

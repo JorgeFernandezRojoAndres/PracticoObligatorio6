@@ -1,12 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class GestionDeProductos extends JInternalFrame {
+     private ArrayList<Producto> listaProductos;
     private JTextField codigoField, descripcionField, precioField, stockField;
     private JComboBox<String> rubroComboBox;
+    private DeTodoSAMenuGeneral menuGeneral;
 
-    public GestionDeProductos() {
+    public GestionDeProductos(DeTodoSAMenuGeneral menuGeneral) {
+        listaProductos = new ArrayList<>();
+        this.menuGeneral = menuGeneral;
         setTitle("Gestión de Productos");
         setSize(700, 300);
         setClosable(true);
@@ -91,6 +96,22 @@ public class GestionDeProductos extends JInternalFrame {
     }
 
     private void guardarProducto() {
-        // Implementa la lógica para guardar el producto aquí
+        // Obtener los valores ingresados por el usuario
+    String codigo = codigoField.getText();
+    String descripcion = descripcionField.getText();
+    double precio = Double.parseDouble(precioField.getText()); // Convertir el texto a double
+    String rubro = (String) rubroComboBox.getSelectedItem(); // Obtener el rubro seleccionado
+    int stock = Integer.parseInt(stockField.getText()); // Convertir el texto a int
+
+    // Crear una instancia de Producto con los valores obtenidos
+    Producto producto = new Producto(codigo, descripcion, precio, rubro, stock);
+    // Agregar el producto a la lista
+        listaProductos.add(producto);
+
+        // Notificar al usuario que el producto ha sido guardado (puedes usar una ventana emergente, un mensaje en la consola, etc.)
+        JOptionPane.showMessageDialog(this, "Producto guardado con éxito.");
+
+        // Limpiar los campos después de guardar
+        limpiarCampos();
     }
 }
