@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-    public class DeTodoSAMenuGeneral extends JFrame {
+public class DeTodoSAMenuGeneral extends JFrame {
     private JDesktopPane desktopPane;
 
     public DeTodoSAMenuGeneral() {
@@ -17,6 +17,20 @@ import java.awt.event.*;
         // Crear el menú bar
         JMenuBar menuBar = new JMenuBar();
         JMenu administracionMenu = new JMenu("Administración");
+        JMenuItem productoMenuItem = new JMenuItem("Producto"); // Nuevo JMenuItem para "Producto"
+        
+        // ActionListener para el botón "Producto"
+        productoMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Crear una instancia de GestionDeProductos y agregarla al JDesktopPane
+                GestionDeProductos gestionDeProductos = new GestionDeProductos();
+                desktopPane.add(gestionDeProductos);
+                gestionDeProductos.setVisible(true);
+            }
+        });
+
+        administracionMenu.add(productoMenuItem); // Agregar el JMenuItem a "Administración"
+        
         JMenu consultaMenu = new JMenu("Consulta");
 
         // Opción de administración
